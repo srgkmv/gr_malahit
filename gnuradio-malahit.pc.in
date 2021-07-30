@@ -1,0 +1,13 @@
+prefix=@CMAKE_INSTALL_PREFIX@
+exec_prefix=${prefix}
+libdir=${exec_prefix}/@GR_LIBRARY_DIR@
+includedir=${prefix}/@GR_INCLUDE_DIR@/malahit
+
+Name: @CPACK_PACKAGE_NAME@
+Description: @CPACK_PACKAGE_DESCRIPTION_SUMMARY@
+URL: http://github.com/mihaly4/
+Version: @CPACK_PACKAGE_VERSION@ 
+
+Requires: gnuradio-runtime gnuradio-audio
+Libs: -L${libdir} -lgnuradio-malahit
+Cflags: -I${includedir}

@@ -173,6 +173,25 @@ add_subdirectory(python)
 add_subdirectory(grc)
 
 ########################################################################
+# Create Pkg Config File
+########################################################################
+# fake gnuradio cpack behavior as long as we don't use it directly
+set(CPACK_PACKAGE_NAME "gnuradio-malahit")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "GNU Radio block for Malahit SDR")
+set(CPACK_PACKAGE_VERSION ${VERSION})
+
+configure_file(
+    ${CMAKE_CURRENT_SOURCE_DIR}/gnuradio-malahit.pc.in
+    ${CMAKE_CURRENT_BINARY_DIR}/gnuradio-malahit.pc
+@ONLY)
+
+install(
+    FILES ${CMAKE_CURRENT_BINARY_DIR}/gnuradio-malahit.pc
+    DESTINATION ${GR_LIBRARY_DIR}/pkgconfig
+    COMPONENT "malahit_devel"
+)
+
+########################################################################
 # Install cmake search helper for this library
 ########################################################################
 
