@@ -1,6 +1,6 @@
 /* -*- c++ -*- */
 /*
- * Copyright 2020 dl1ksv.
+ * Copyright 2021 Sergej Komov.
  *
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -12,7 +12,7 @@
 #include <gnuradio/blocks/float_to_complex.h>
 #include <gnuradio/io_signature.h>
 
-#include "malahitpp_impl.h"
+#include "malahit_impl.h"
 
 #include <exception>
 #include <fstream>
@@ -20,16 +20,16 @@
 namespace gr {
 namespace malahit {
 
-malahitpp::sptr malahitpp::make(const std::string device_name, int unit)
+malahit::sptr malahit::make(const std::string device_name, int unit)
 {
-    return gnuradio::get_initial_sptr(new malahitpp_impl(device_name, unit));
+    return gnuradio::get_initial_sptr(new malahit_impl(device_name, unit));
 }
 
 /*
  * The private constructor
  */
-malahitpp_impl::malahitpp_impl(const std::string user_device_name, int unit)
-    : gr::hier_block2("malahitpp",
+malahit_impl::malahit_impl(const std::string user_device_name, int unit)
+    : gr::hier_block2("malahit",
                       gr::io_signature::make(0, 0, 0),
                       gr::io_signature::make(1, 1, sizeof(gr_complex)))
 {
@@ -117,7 +117,7 @@ malahitpp_impl::malahitpp_impl(const std::string user_device_name, int unit)
     connect(malahit, 1, f2c, 1);
     connect(f2c, 0, self(), 0);
 
-    malahit_control_block = malahitpp_control::make();
+    malahit_control_block = malahit_control::make();
 
     message_port_register_hier_in(pmt::mp("freq"));
     msg_connect(self(), pmt::mp("freq"), malahit_control_block, pmt::mp("freq"));
@@ -126,9 +126,9 @@ malahitpp_impl::malahitpp_impl(const std::string user_device_name, int unit)
 /*
  * Our virtual destructor.
  */
-malahitpp_impl::~malahitpp_impl() {}
+malahit_impl::~malahit_impl() {}
 
-void malahitpp_impl::set_freq(float freq)
+void malahit_impl::set_freq(float freq)
 {
     float setfreq;
     if (d_freq_req == (int)freq)
@@ -142,11 +142,11 @@ void malahitpp_impl::set_freq(float freq)
     malahit_control_block->set_freq(setfreq);
 }
 
-void malahitpp_impl::set_lna(int gain) { malahit_control_block->set_lna(gain); }
+void malahit_impl::set_lna(int gain) { malahit_control_block->set_lna(gain); }
 
-void malahitpp_impl::set_mixer_gain(int gain) { malahit_control_block->set_mixer_gain(gain); }
+void malahit_impl::set_mixer_gain(int gain) { malahit_control_block->set_mixer_gain(gain); }
 
-void malahitpp_impl::set_freq_corr(int ppm)
+void malahit_impl::set_freq_corr(int ppm)
 {
     float freq;
     if (d_corr == ppm)
@@ -158,7 +158,7 @@ void malahitpp_impl::set_freq_corr(int ppm)
     set_freq(freq);
 }
 
-void malahitpp_impl::set_if_gain(int gain)
+void malahit_impl::set_if_gain(int gain)
 {
     if ((gain < 0) || gain > 59) {
         GR_LOG_WARN(d_logger, boost::format("Invalid If gain value: %1%") % gain);

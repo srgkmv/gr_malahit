@@ -21,8 +21,8 @@ namespace py = pybind11;
 /* Please do not delete
 /**************************************/
 // BINDING_FUNCTION_PROTOTYPES(
-    void bind_malahitpp_control(py::module& m);
-    void bind_malahitpp(py::module& m);
+    void bind_malahit_control(py::module& m);
+    void bind_malahit(py::module& m);
 // ) END BINDING_FUNCTION_PROTOTYPES
 
 
@@ -51,7 +51,7 @@ PYBIND11_MODULE(malahit_python, m)
     /* Please do not delete
     /**************************************/
     // BINDING_FUNCTION_CALLS(
-    bind_malahitpp_control(m);
-    bind_malahitpp(m);
+    bind_malahit_control(m);
+    bind_malahit(m);
     // ) END BINDING_FUNCTION_CALLS
 }

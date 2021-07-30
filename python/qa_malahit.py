@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2020 dl1ksv.
+# Copyright 2021 Sergej Komov.
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 #
@@ -9,15 +9,15 @@
 from gnuradio import gr, gr_unittest
 # from gnuradio import blocks
 try:
-    from malahit_python import malahitpp
+    from malahit_python import malahit
 except ImportError:
     import os
     import sys
     dirname, filename = os.path.split(os.path.abspath(__file__))
     sys.path.append(os.path.join(dirname, "bindings"))
-    from malahit_python import malahitpp
+    from malahit_python import malahit
 
-class qa_malahitpp(gr_unittest.TestCase):
+class qa_malahit(gr_unittest.TestCase):
 
     def setUp(self):
         self.tb = gr.top_block()
@@ -27,7 +27,7 @@ class qa_malahitpp(gr_unittest.TestCase):
 
     def test_instance(self):
         try:
-            instance = malahitpp()
+            instance = malahit()
         except(RuntimeError):
             pass
 
@@ -38,4 +38,4 @@ class qa_malahitpp(gr_unittest.TestCase):
 
 
 if __name__ == '__main__':
-    gr_unittest.run(qa_malahitpp)
+    gr_unittest.run(qa_malahit)

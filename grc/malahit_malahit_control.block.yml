@@ -1,4 +1,4 @@
-id: malahit_malahitpp_control
+id: malahit_malahit_control
 label: Malahit SDR Control
 category: '[Malahit]'
 
@@ -29,7 +29,7 @@ templates:
     imports: 
         import malahit
     make: |-
-        malahit.malahitpp_control()
+        malahit.malahit_control()
         self.${id}.set_lna(${lnaswitch})
         self.${id}.set_mixer_gain(${mixergainswitch})
         self.${id}.set_if_gain(${if_gain})

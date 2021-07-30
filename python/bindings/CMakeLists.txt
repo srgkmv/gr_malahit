@@ -18,8 +18,8 @@ include(GrPybind)
 ########################################################################
 
 list(APPEND malahit_python_files
-    malahitpp_control_python.cc
-    malahitpp_python.cc python_bindings.cc)
+    malahit_control_python.cc
+    malahit_python.cc python_bindings.cc)
 
 GR_PYBIND_MAKE_OOT(malahit 
    ../..

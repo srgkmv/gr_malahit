@@ -32,5 +32,5 @@ include(GrTest)
 
 set(GR_TEST_TARGET_DEPS gnuradio-malahit)
 set(GR_TEST_PYTHON_DIRS ${CMAKE_BINARY_DIR}/python/bindings)
-GR_ADD_TEST(qa_malahitpp_control ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_malahitpp_control.py)
-GR_ADD_TEST(qa_malahitpp ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_malahitpp.py)
+GR_ADD_TEST(qa_malahit_control ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_malahit_control.py)
+GR_ADD_TEST(qa_malahit ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_malahit.py)

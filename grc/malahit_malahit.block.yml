@@ -1,4 +1,4 @@
-id: malahit_malahitpp
+id: malahit_malahit
 label: Malahit SDR
 category: '[Malahit]'
 flags: throttle
@@ -48,7 +48,7 @@ templates:
       import malahit
   
     make: |-
-        malahit.malahitpp(${device_name}, ${unit})
+        malahit.malahit(${device_name}, ${unit})
 
         self.${id}.set_lna(${lnaswitch})
         self.${id}.set_mixer_gain(${mixergainswitch})

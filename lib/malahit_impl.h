@@ -1,37 +1,37 @@
 /* -*- c++ -*- */
 /*
- * Copyright 2020 dl1ksv.
+ * Copyright 2021 Sergej Komov.
  *
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-#ifndef INCLUDED_MALAHIT_FCDPP_IMPL_H
-#define INCLUDED_MALAHIT_FCDPP_IMPL_H
+#ifndef INCLUDED_MALAHIT_IMPL_H
+#define INCLUDED_MALAHIT_IMPL_H
 
 #include <gnuradio/audio/source.h>
 #include <gnuradio/logger.h>
 #include <gnuradio/prefs.h>
-#include <malahit/malahitpp.h>
-#include <malahit/malahitpp_control.h>
+#include <malahit/malahit.h>
+#include <malahit/malahit_control.h>
 
 
 namespace gr {
 namespace malahit {
 
-class malahitpp_impl : public malahitpp
+class malahit_impl : public malahit
 {
 private:
     gr::audio::source::sptr malahit;           /*!< The audio input source */
-    malahitpp_control::sptr malahit_control_block; /*!< The malahit control block */
+    malahit_control::sptr malahit_control_block; /*!< The malahit control block */
     unsigned int d_freq_req;               /*!< The latest requested frequency in Khz */
     int d_corr;
     int d_unit;
     gr::logger_ptr d_logger;
 
 public:
-    malahitpp_impl(const std::string device_name, int unit);
-    ~malahitpp_impl();
-    /* Public API functions documented in include/malahit/malahitproplus.h */
+    malahit_impl(const std::string device_name, int unit);
+    ~malahit_impl();
+    /* Public API functions documented in include/malahit/malahit.h */
     void set_freq(float freq);
     void set_lna(int gain);
     void set_mixer_gain(int gain);
@@ -42,4 +42,4 @@ public:
 } // namespace malahit
 } // namespace gr
 
-#endif /* INCLUDED_MALAHIT_FCDPP_IMPL_H */
+#endif /* INCLUDED_MALAHIT_IMPL_H */

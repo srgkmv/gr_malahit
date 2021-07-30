@@ -7,6 +7,6 @@
 #
 
 install(FILES
-    malahit_malahitpp.block.yml
-    malahit_malahitpp_control.block.yml DESTINATION share/gnuradio/grc/blocks
+    malahit_malahit.block.yml
+    malahit_malahit_control.block.yml DESTINATION share/gnuradio/grc/blocks
 )

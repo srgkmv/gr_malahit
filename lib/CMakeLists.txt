@@ -12,8 +12,8 @@
 include(GrPlatform) #define LIB_SUFFIX
 
 list(APPEND malahit_sources
-    malahitpp_impl.cc
-    malahitpp_control_impl.cc
+    malahit_impl.cc
+    malahit_control_impl.cc
 )
 
 set(malahit_sources "${malahit_sources}" PARENT_SCOPE)
@@ -64,8 +64,8 @@ if( Boost_unit_test_framework_FOUND )
     #include_directories()
     # List all files that contain Boost.UTF unit tests here
     list(APPEND test_malahit_sources
-    qa_malahitpp.cc
-    qa_malahitpp_control.cc
+    qa_malahit.cc
+    qa_malahit_control.cc
     )
     # Anything we need to link to for the unit tests go here
     list(APPEND GR_TEST_TARGET_DEPS gnuradio-malahit)

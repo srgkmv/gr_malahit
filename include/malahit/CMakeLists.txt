@@ -11,6 +11,6 @@
 ########################################################################
 install(FILES
     api.h
-    malahitpp.h
-    malahitpp_control.h DESTINATION include/malahit
+    malahit.h
+    malahit_control.h DESTINATION include/malahit
 )
