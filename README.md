@@ -40,6 +40,6 @@ All modules accept messages to control the frequency. That was the reason to int
     The malahit module was introduced, as gnuradio 3.8 does not contain gr-malahit at the moment.  
 
 
-5.    Credits  
+4.    Credits  
     &nbsp;  
 Some code is taken from gr-fcdproplus by Volker Schroer.  
