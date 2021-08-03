@@ -18,7 +18,7 @@ This idea was taken from the osmosdr drivers.  To control the device the usb ser
 It contains four components:
  
 Malahit DSP              - The complete source block
-Malahit DSP control      - The control block, to set frequency, gain, etc.
+Malahit DSP control      - The control block, to set frequency.
 
 The  control block are used inside the source block but can be used standalone, too.
 All blocks contain a message port to set the frequency by messages.
