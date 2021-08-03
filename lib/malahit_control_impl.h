@@ -25,9 +25,6 @@ public:
 
     /* Public API functions documented in include/malahit/malahit_control.h */
     void set_freq(float freq);
-    void set_lna(int gain);
-    void set_mixer_gain(int gain);
-    void set_if_gain(int gain);
     void set_frequency_msg(pmt::pmt_t msg);
 };
 

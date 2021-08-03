@@ -1,5 +1,5 @@
 id: malahit_malahit
-label: Malahit SDR
+label: Malahit DSP
 category: '[Malahit]'
 flags: throttle
 
@@ -12,14 +12,6 @@ parameters:
   label: Unit
   default: '1 '
   dtype: int
-- id: lnaswitch
-  label: Lna enable,disable
-  dtype: int
-  default: '1'
-- id: mixergainswitch
-  label: Mixergain enable/disable
-  dtype: int
-  default: '1'
 - id: freq
   label: Frequency (Unit Hz)
   dtype: real
@@ -28,10 +20,6 @@ parameters:
   label: Frequency corr. (ppm)
   dtype: int
   default: '0'
-- id: if_gain
-  label: If gain
-  dtype: int
-  default: '1'
 
 inputs:
 -   domain: message
@@ -49,24 +37,18 @@ templates:
   
     make: |-
         malahit.malahit(${device_name}, ${unit})
-
-        self.${id}.set_lna(${lnaswitch})
-        self.${id}.set_mixer_gain(${mixergainswitch})
-        self.${id}.set_if_gain(${if_gain})
+        
         self.${id}.set_freq_corr(${ppm})
         self.${id}.set_freq(${freq})
 
     callbacks:
     - set_freq(${freq})
-    - set_lna(${lnaswitch})
-    - set_mixer_gain(${mixergainswitch})
     - set_freq_corr(${ppm})
-    - set_if_gain(${if_gain})
 
 
 documentation:
 
-    This block wraps the Malahit SDR USB alsa audio input and the USB Serial control interface \
+    This block wraps the Malahit DSP USB alsa audio input and the USB Serial control interface \
     into one convenient GNU Radio source block.
 
     The sample rate is fixed at 160 ksps.
@@ -76,13 +58,6 @@ documentation:
     If the device name is empty or invalid the device will beautodetected\
     by looking into /proc/asound/cards .
     The frequency is expressed in Unit Hz, that means\
-    Unit = 1 Hz, Unit = 1000 Khz
-
-    The LNA can be switched on and off.
-
-    The mixer gain can be switched on and off.
-
-    The if gain can be set between 0 and 59 ( integer values) .
-
+    Unit = 1 Hz, Unit = 1000 Khz.
 
 file_format: 1

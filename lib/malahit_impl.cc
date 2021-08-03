@@ -95,7 +95,7 @@ malahit_impl::malahit_impl(const std::string user_device_name, int unit)
             }
             cards.close();
             if (device_name.empty()) {
-                throw std::runtime_error("No Malahit SDR found.");
+                throw std::runtime_error("No Malahit DSP found.");
             }
         } else {
             throw std::runtime_error("Alsa not found.");
@@ -107,7 +107,7 @@ malahit_impl::malahit_impl(const std::string user_device_name, int unit)
         GR_LOG_INFO(d_logger, boost::format("Audio device %1% opened") % device_name);
     } else {
         GR_LOG_INFO(d_logger,
-                    boost::format("Malahit SDR found as: %1%") % device_name);
+                    boost::format("Malahit DSP found as: %1%") % device_name);
     }
 
     /* block to convert stereo audio to a complex stream */
@@ -142,10 +142,6 @@ void malahit_impl::set_freq(float freq)
     malahit_control_block->set_freq(setfreq);
 }
 
-void malahit_impl::set_lna(int gain) { malahit_control_block->set_lna(gain); }
-
-void malahit_impl::set_mixer_gain(int gain) { malahit_control_block->set_mixer_gain(gain); }
-
 void malahit_impl::set_freq_corr(int ppm)
 {
     float freq;
@@ -156,15 +152,6 @@ void malahit_impl::set_freq_corr(int ppm)
     freq = d_freq_req;
     d_freq_req = 0;
     set_freq(freq);
-}
-
-void malahit_impl::set_if_gain(int gain)
-{
-    if ((gain < 0) || gain > 59) {
-        GR_LOG_WARN(d_logger, boost::format("Invalid If gain value: %1%") % gain);
-        return;
-    }
-    malahit_control_block->set_if_gain(gain);
 }
 
 } /* namespace malahit */

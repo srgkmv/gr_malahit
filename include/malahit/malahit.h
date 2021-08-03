@@ -15,10 +15,10 @@ namespace gr {
 namespace malahit {
 
 /*!
- * \brief Malahit SDR source block.
+ * \brief Malahit DSP source block.
  *
- * This class provides a soure block for the Malahit SDR by wrapping the
- * alsa audio interface and the USB serial control interface of the Malahit SDR
+ * This class provides a soure block for the Malahit DSP by wrapping the
+ * alsa audio interface and the USB serial control interface of the Malahit DSP
  * into one convenient source block.
  * The hadware audio device is autodetected by the card name.
  *
@@ -43,36 +43,18 @@ public:
     /*! \brief Set frequency with resolution defined by unit.
      *  \param freq The frequency in unit Hz
      *
-     * Sets the frequency of the Malahit SDR with Hz or Khz resolution
+     * Sets the frequency of the Malahit DSP with Hz or Khz resolution
      * depending on the unit paramater ( 1: Hz , 1000 Khz )
      * applying the frequency correction set by set_freq_corr().
      *
      */
     virtual void set_freq(float freq) = 0;
 
-    /*! \brief Switches the LNA on/off.
-     *  \param gain  lna on/off.
-     *
-     */
-    virtual void set_lna(int gain) = 0;
-
-    /*! \brief Switches mixer gain onf/off.
-     *  \param gain true means on.
-     *
-     */
-    virtual void set_mixer_gain(int gain) = 0;
-
     /*! \brief Set new frequency correction.
      *  \param ppm The new frequency correction in parts per million
      *
      */
     virtual void set_freq_corr(int ppm) = 0;
-
-    /*! \brief Set If gain.
-     *  \param gain The If gain value between 0 and 59 db
-     *
-     */
-    virtual void set_if_gain(int gain) = 0;
 };
 
 } // namespace malahit

@@ -31,12 +31,4 @@
  static const char *__doc_gr_malahit_malahit_control_set_freq = R"doc()doc";
 
 
- static const char *__doc_gr_malahit_malahit_control_set_lna = R"doc()doc";
-
-
- static const char *__doc_gr_malahit_malahit_control_set_mixer_gain = R"doc()doc";
-
-
- static const char *__doc_gr_malahit_malahit_control_set_if_gain = R"doc()doc";
-
   

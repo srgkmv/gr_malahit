@@ -48,12 +48,12 @@ malahit_control_impl::malahit_control_impl()
     serial_port = open("/dev/ttyACM0", O_RDWR);
     if (serial_port < 0) 
     {
-        GR_LOG_ERROR(d_logger, "Malahit SDR not found.");
-        throw std::runtime_error("Malahit SDR not found.");
+        GR_LOG_ERROR(d_logger, "Malahit DSP not found.");
+        throw std::runtime_error("Malahit DSP not found.");
     }
     else 
     {
-        GR_LOG_INFO(d_logger, "Malahit SDR initialized.");
+        GR_LOG_INFO(d_logger, "Malahit DSP initialized.");
     }
     
     struct termios tty;
@@ -130,19 +130,6 @@ void malahit_control_impl::set_frequency_msg(pmt::pmt_t msg)
                     "Set Frequency Message must be either a number or a "
                     "key:value pair where the key is 'freq'.");
     }
-}
-void malahit_control_impl::set_lna(int gain)
-{
-    
-}
-void malahit_control_impl::set_mixer_gain(int gain)
-{
-    
-}
-
-void malahit_control_impl::set_if_gain(int gain)
-{
-    
 }
 
 } /* namespace malahit */

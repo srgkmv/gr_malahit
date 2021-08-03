@@ -1,4 +1,4 @@
-gr-malahit is an linux oot-module for gnuradio to implement a malahit sdr source.  
+gr-malahit is an linux oot-module for gnuradio to implement a malahit dsp source.  
 On linux it autodetects the correct soundcard from /proc/asound/cards.  
 This idea was taken from the osmosdr drivers.
 
@@ -25,8 +25,8 @@ $make install
 &nbsp;      
 After that executing grc  you'll find in the section Malahit   
 &nbsp;  
-Malahit SDR  
-Malahit SDR control  
+Malahit DSP  
+Malahit DSP control  
 
 3.    Usage  
     &nbsp;  

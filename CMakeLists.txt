@@ -177,7 +177,7 @@ add_subdirectory(grc)
 ########################################################################
 # fake gnuradio cpack behavior as long as we don't use it directly
 set(CPACK_PACKAGE_NAME "gnuradio-malahit")
-set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "GNU Radio block for Malahit SDR")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "GNU Radio block for Malahit DSP")
 set(CPACK_PACKAGE_VERSION ${VERSION})
 
 configure_file(

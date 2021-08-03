@@ -36,28 +36,10 @@ public:
     /*! \brief Sets the frequency .
      *  \param freq The frequency in unit Hz
      *
-     * Sets the frequency of the Malahit SDR with Hz resolution
+     * Sets the frequency of the Malahit DSP with Hz resolution
      *
      */
     virtual void set_freq(float freq) = 0;
-
-    /*! \brief Switches the LNA on/off.
-     *  \param gain  lna on/off.
-     *
-     */
-    virtual void set_lna(int gain) = 0;
-
-    /*! \brief Switches mixer gain onf/off.
-     *  \param gain true means on.
-     *
-     */
-    virtual void set_mixer_gain(int gain) = 0;
-
-    /*! \brief Set If gain.
-     *  \param gain The If gain value between 0 and 59 db
-     *
-     */
-    virtual void set_if_gain(int gain) = 0;
 };
 
 } // namespace malahit

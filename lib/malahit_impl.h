@@ -33,10 +33,7 @@ public:
     ~malahit_impl();
     /* Public API functions documented in include/malahit/malahit.h */
     void set_freq(float freq);
-    void set_lna(int gain);
-    void set_mixer_gain(int gain);
     void set_freq_corr(int ppm);
-    void set_if_gain(int gain);
 };
 
 } // namespace malahit

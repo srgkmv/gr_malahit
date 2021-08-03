@@ -14,7 +14,7 @@
 /* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
 /* BINDTOOL_USE_PYGCCXML(0)                                                        */
 /* BINDTOOL_HEADER_FILE(malahit_control.h)                                        */
-/* BINDTOOL_HEADER_FILE_HASH(5e6b3a1ba9b7e97fb6ede6524be158d7)                     */
+/* BINDTOOL_HEADER_FILE_HASH(96e3f06ede3ffcde1ced38d0da7212be)                     */
 /***********************************************************************************/
 
 #include <pybind11/complex.h>
@@ -39,38 +39,13 @@ void bind_malahit_control(py::module& m)
         .def(py::init(&malahit_control::make),
            D(malahit_control,make)
         )
-        
-
-
-
 
         .def("set_freq",&malahit_control::set_freq,
             py::arg("freq"),
             D(malahit_control,set_freq)
         )
 
-
-        .def("set_lna",&malahit_control::set_lna,
-            py::arg("gain"),
-            D(malahit_control,set_lna)
-        )
-
-
-        .def("set_mixer_gain",&malahit_control::set_mixer_gain,
-            py::arg("gain"),
-            D(malahit_control,set_mixer_gain)
-        )
-
-
-        .def("set_if_gain",&malahit_control::set_if_gain,
-            py::arg("gain"),
-            D(malahit_control,set_if_gain)
-        )
-
         ;
-
-
-
 
 }
 
