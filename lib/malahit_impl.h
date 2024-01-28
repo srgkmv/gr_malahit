@@ -26,7 +26,7 @@ private:
     unsigned int d_freq_req;               /*!< The latest requested frequency in Khz */
     int d_corr;
     int d_unit;
-    gr::logger_ptr d_logger;
+    gr::logger d_logger;
 
 public:
     malahit_impl(const std::string device_name, int unit);

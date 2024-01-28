@@ -11,12 +11,14 @@
 
 #include <gnuradio/blocks/float_to_complex.h>
 #include <gnuradio/io_signature.h>
+#include <gnuradio/logger.h>
 
 #include "malahit_impl.h"
 
 #include <exception>
 #include <fstream>
 #include <iostream>
+
 namespace gr {
 namespace malahit {
 
@@ -31,28 +33,12 @@ malahit::sptr malahit::make(const std::string device_name, int unit)
 malahit_impl::malahit_impl(const std::string user_device_name, int unit)
     : gr::hier_block2("malahit",
                       gr::io_signature::make(0, 0, 0),
-                      gr::io_signature::make(1, 1, sizeof(gr_complex)))
+                      gr::io_signature::make(1, 1, sizeof(gr_complex))),
+                      d_logger("malahit " + user_device_name)
 {
     prefs* p = prefs::singleton();
-    std::string config_file = p->get_string("LOG", "log_config", "");
-    std::string log_level = p->get_string("LOG", "log_level", "off");
-    std::string log_file = p->get_string("LOG", "log_file", "");
 
-    GR_CONFIG_LOGGER(config_file);
-
-    GR_LOG_GETLOGGER(LOG, "gr_log." + alias());
-    GR_LOG_SET_LEVEL(LOG, log_level);
-    if (log_file.size() > 0) {
-        if (log_file == "stdout") {
-            GR_LOG_SET_CONSOLE_APPENDER(LOG, "cout", "gr::log :%p: %c{1} - %m%n");
-        } else if (log_file == "stderr") {
-            GR_LOG_SET_CONSOLE_APPENDER(LOG, "cerr", "gr::log :%p: %c{1} - %m%n");
-        } else {
-            GR_LOG_SET_FILE_APPENDER(LOG, log_file, true, "%r :%p: %c{1} - %m%n");
-        }
-    }
-
-    d_logger = LOG;
+    d_logger.set_level(gr::log_level::off);
 
     std::string device_name;
     bool success;
@@ -69,8 +55,7 @@ malahit_impl::malahit_impl(const std::string user_device_name, int unit)
             malahit = gr::audio::source::make(160000, user_device_name, true);
             success = true;
         } catch (std::exception) {
-            GR_LOG_INFO(d_logger,
-                        boost::format("Could not open device: %1%") % user_device_name);
+            d_logger.info("Could not open device: {}", user_device_name);
             success = false;
         }
     }
@@ -104,10 +89,9 @@ malahit_impl::malahit_impl(const std::string user_device_name, int unit)
         malahit = gr::audio::source::make(160000, device_name, true);
     }
     if (success) {
-        GR_LOG_INFO(d_logger, boost::format("Audio device %1% opened") % device_name);
+        d_logger.info("Audio device {} opened", device_name);
     } else {
-        GR_LOG_INFO(d_logger,
-                    boost::format("Malahit DSP found as: %1%") % device_name);
+        d_logger.info("Malahit DSP found as: {}", device_name);
     }
 
     /* block to convert stereo audio to a complex stream */
@@ -148,7 +132,7 @@ void malahit_impl::set_freq_corr(int ppm)
     if (d_corr == ppm)
         return;
     d_corr = ppm;
-    GR_LOG_INFO(d_logger, boost::format("Set frequency correction to: %1% ppm ") % ppm);
+    d_logger.info("Set frequency correction to: {} ppm ", ppm);
     freq = d_freq_req;
     d_freq_req = 0;
     set_freq(freq);
